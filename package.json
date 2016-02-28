@@ -1,11 +1,13 @@
 {
   "name": "tempo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "En enkel tidtaknings-app for temposykling",
   "main": "src/app.js",
   "scripts": {
     "start": "set NODE_ENV=development&& hjs-dev-server",
-    "build": "set NODE_ENV=production&& webpack&& node script/fix-slash",
+    "localbuild": "set NODE_ENV=localproduction&& webpack&& node script/fix-slash",
+    "remotebuild": "set NODE_ENV=production&& webpack",
+    "deploy": "npm run remotebuild&& surge -p public -d tempo.rogermarkussen.no",
     "test": "set NODE_ENV=test&& tape -r babel-core/register test/**/*.js | tap-spec"
   },
   "repository": {
@@ -24,8 +26,14 @@
   },
   "homepage": "https://github.com/rogermarkussen/tempo#readme",
   "dependencies": {
+    "localforage": "^1.4.0",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-router5": "^2.0.0",
+    "router5": "^2.0.6",
+    "router5-history": "^2.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",

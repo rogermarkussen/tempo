@@ -1,5 +1,5 @@
 var shell = require('shelljs')
-var str = shell.cat('public/index.html')
+var str = shell.cat('localbuild/index.html')
 var startIndex = str.indexOf('<script src="/app.js"></script>')
 str = str.slice(0, startIndex + 13) + str.slice(startIndex + 14)
-str.to('public/index.html')
+str.to('localbuild/index.html')
