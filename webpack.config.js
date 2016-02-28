@@ -1,9 +1,13 @@
 var getConfig = require('hjs-webpack')
-var isLocalBuild = process.env.NODE_ENV === 'localproduction'
+var isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = getConfig({
   in: 'src/app.js',
-  out: isLocalBuild ? 'localbuild' : 'public',
-  isDev: true,
-  clearBeforeBuild: true
+  out: 'public',
+  output: {
+    filename: 'app.js'
+  },
+  isDev: isDev,
+  html: false,
+  clearBeforeBuild: '!*.html'
 })

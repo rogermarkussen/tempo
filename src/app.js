@@ -5,22 +5,24 @@ import { RouterProvider } from 'react-router5'
 import createRouter from './create-router'
 import configureStore from './store/configure-store'
 import getInitialState from './get-initial-state'
-import Main from './components/main'
+import Layout from './components/layout'
 
 const router = createRouter()
-const initialState = getInitialState()
+getInitialState((is) => {
+  const initialState = is
 
-router.start((err, state) => {
-  if (err) return
-  initialState.router = { route: state }
-  const store = configureStore(router, initialState)
+  router.start((err, state) => {
+    if (err) return
+    initialState.router = { route: state }
+    const store = configureStore(router, initialState)
 
-  const root = (
-    <Provider store={store} >
-      <RouterProvider router={router}>
-        <Main />
-      </RouterProvider>
-    </Provider>
-    )
-  render(root, document.getElementById('root'))
+    const root = (
+      <Provider store={store} >
+        <RouterProvider router={router}>
+          <Layout />
+        </RouterProvider>
+      </Provider>
+      )
+    render(root, document.getElementById('root'))
+  })
 })

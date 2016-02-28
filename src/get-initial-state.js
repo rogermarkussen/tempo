@@ -1,15 +1,17 @@
 import db from 'localforage'
 
 const initialState = {
-  temporitt: {
-    navn: null,
-    distanse: null,
-    dato: null,
-    startTid: null,
-    deltagere: [],
-    sluttTider: []
-  },
-  deltagere: {}
+  tempo: {
+    temporitt: {
+      navn: null,
+      distanse: null,
+      dato: null,
+      startTid: null,
+      deltagere: [],
+      sluttTider: []
+    },
+    deltagere: {}
+  }
 }
 
 const init = () => {
@@ -19,14 +21,14 @@ const init = () => {
   db.setItem('data', initialState)
 }
 
-export default function () {
+export default function (done) {
   db.getItem('data', (err, data) => {
     if (err) window.alert(`Fikk ikke lest data fra lokal database! Feilmelding: ${err}`)
     else if (!data) {
       init()
-      return initialState
+      done(initialState)
     } else {
-      return data
+      done(data)
     }
   })
 }
