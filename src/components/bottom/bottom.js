@@ -1,9 +1,14 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { footerStyle, progressInfo } from './bottom.styles'
 
 const Bottom = ({ name }) => {
   return (
-    <div>Nå er vi på {name}</div>
+    <div style={footerStyle}>
+      <div style={progressInfo}>
+        Dette er footeren, ikke sant {name}?
+      </div>
+    </div>
     )
 }
 Bottom.propTypes = {

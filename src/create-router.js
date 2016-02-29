@@ -1,4 +1,4 @@
-import Router5, { loggerPlugin } from 'router5'
+import Router5 from 'router5'
 import history from 'router5-history'
 
 export default function createRouter () {
@@ -8,7 +8,6 @@ export default function createRouter () {
     .addNode('oppsett', '/oppsett')
     .addNode('ritt', '/ritt')
     .addNode('resultater', '/resultater')
-    .usePlugin(loggerPlugin())
     .usePlugin(history())
   return router
 }
